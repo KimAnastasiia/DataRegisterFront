@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Routes, Link } from "react-router-dom"
 import { CreateVisita } from './Components/CreateVisitaComponent';
 import MenuComponent from './Components/MenuComponent';
+import { GetVisitasComponent } from './Components/GetVisitasComponent';
 function App() {
   return (
     <div className="App">
@@ -10,6 +11,7 @@ function App() {
 
       <Routes>
         <Route path="/craete" element={<CreateVisita/>}/>
+        <Route path="/" element={<GetVisitasComponent/>}/>
       </Routes>
     </div>
   )
