@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePicker, Button, Table, message, Pagination  } from 'antd';
+import { DatePicker, Button, Table, message, Pagination,Modal   } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { backendUrl } from '../Global';
 import { GetVisita } from '../Types/GetVisita';
@@ -13,7 +13,32 @@ export const GetVisitasComponent: React.FC = () => {
   const [pageSize, setPageSize] = useState(10);
   const [totalItems, setTotalItems] = useState(0);
   const [totalParticipantes, setParticipantes] = useState(0);
-
+  const { confirm } = Modal;
+  const handleDelete = async (key: React.Key) => {
+    try {
+      // Make DELETE request to the backend
+      const response = await fetch(`http://localhost:8080/api/visitas/${key}`, {
+        method: 'DELETE',
+      });
+  
+      if (response.ok) {
+        // Update the local state by filtering out the deleted item
+        const newData = visitas.filter((item) => item.id !== key);
+        setVisitas(newData);
+  
+        // Optional: Display a success message
+        message.success('Record deleted successfully!');
+      } else {
+        // Handle failure response
+        message.error('Failed to delete the record. Please try again.');
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error('Error deleting record:', error);
+      message.error('An error occurred while deleting the record.');
+    }
+  };
+  
   const columns: ColumnsType<GetVisita> = [
     { title: 'ID', dataIndex: 'id', key: 'id',defaultSortOrder: 'ascend', sorter: (a:any, b:any) => a.id - b.id,  },
     { title: 'Colegio', dataIndex: 'colegio', key: 'colegio',  sorter: (a: any, b: any) => a.colegio.localeCompare(b.colegio),},
@@ -22,8 +47,35 @@ export const GetVisitasComponent: React.FC = () => {
     },
     { title: `Participantes ( Total: ${totalParticipantes} )` , dataIndex: 'participantes', key: 'participantes',
       sorter: (a:any, b:any) => a.participantes - b.participantes, },
+      {
+        title: 'Action',
+        dataIndex: '',
+        key: 'x',
+        render: (_, record) => (
+          <a
+            onClick={() => {
+              confirmDelete(record.id);
+            }}
+            style={{ color: 'red' }}
+          >
+            Delete
+          </a>
+        ),
+      },
   ];
-
+  const confirmDelete = (key: React.Key) => {
+    confirm({
+      title: 'Are you sure you want to delete this record?',
+      content: 'This action cannot be undone.',
+      okText: 'Yes, delete',
+      okType: 'danger',
+      cancelText: 'Cancel',
+      onOk: () => {
+        handleDelete(key); // Call delete function
+      }
+    });
+  };
+  
   const fetchVisitas = async (page: number = 1, size: number = 20) => {
     if (!startDate || !endDate) {
       message.error('Por favor, seleccione ambas fechas.');
@@ -65,7 +117,6 @@ export const GetVisitasComponent: React.FC = () => {
     <div style={{ padding: '20px' }}>
       <h2>Buscar Visitas entre Fechas</h2>
       <div style={{ marginBottom: '20px' }}>
-
         <DatePicker
           placeholder="Fecha de inicio"
           onChange={(date) => setStartDate(date)}

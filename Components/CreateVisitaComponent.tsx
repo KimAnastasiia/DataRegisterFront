@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Visita } from '../Types/Visita'; // Assuming Visita is properly typed in the Types folder
-import { Input, Button, Typography, Row, Col, Form, DatePicker, notification  } from 'antd';
+import { Input, Button, Typography, Row, Col, message, Form, DatePicker, notification  } from 'antd';
 import { backendUrl } from '../Global';
 
 export const CreateVisita : React.FC = () => {
@@ -25,22 +25,12 @@ export const CreateVisita : React.FC = () => {
       });
 
       if (response.ok) {
-        notification.success({
-          message: 'Success',
-          description: 'Visita created successfully!',
-        });
+        message.success('Visita created successfully!');
       } else {
-        notification.error({
-          message: 'Error',
-          description: 'There was an error creating the visita. Please try again.',
-        });
+        message.error('There was an error creating the visita. Please try again.');
       }
     } catch (error) {
-      console.error('Error creating visita:', error);
-      notification.error({
-        message: 'Network Error',
-        description: 'Unable to connect to the server. Please check your connection.',
-      });
+      message.error('Unable to connect to the server. Please check your connection.');
     } finally {
       setLoading(false);
     }
