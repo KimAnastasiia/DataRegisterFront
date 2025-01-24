@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormOutlined, SearchOutlined, FolderAddOutlined } from '@ant-design/icons';
+import { FormOutlined, SearchOutlined, BuildOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 const MenuComponent: React.FC = () => {
@@ -26,7 +26,16 @@ const MenuComponent: React.FC = () => {
       ),
       key: 'app',
       icon: <FormOutlined />,
-    }
+    },
+    {
+      label: (
+        <a href="/activities">
+          Actividades
+        </a>
+      ),
+      key: 'activities',
+      icon: <BuildOutlined />,
+    },
   ];
   
   const onClick: MenuProps['onClick'] = (e) => {
