@@ -1,0 +1,57 @@
+import React, { useState, useEffect} from 'react';
+import { message  } from 'antd';
+import { backendUrl } from '../Global';
+import { useParams } from "react-router-dom";
+
+
+export const InidceDetails: React.FC = () => {
+
+ const { endDate } = useParams()
+ const { startDate } = useParams()
+
+  const [totalVisitas, setTotalVisitas] = useState(0);
+  const [totalParticipantes, setParticipantes] = useState(0);
+
+
+
+useEffect(() => {
+    fetchVisitas();
+    }, []);
+  
+  const fetchVisitas = async () => {
+
+    if (!startDate || !endDate) {
+      message.error('Por favor, seleccione ambas fechas.');
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${backendUrl}/api/visitas/indice?startDate=${startDate}&endDate=${endDate}`
+      );
+
+      if (!response.ok) {
+        throw new Error('Error al obtener visitas');
+      }
+
+      const data = await response.json();  // data will now contain { items, total }
+      setTotalVisitas(data.totalVisitas)
+      setParticipantes(data.totalParticipantes)
+      
+    } catch (error) {
+      message.error('Error al obtener visitas.');
+      console.error(error);
+    } finally {
+
+    }
+  };
+
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h2>Statistic of Visitas </h2>
+        <h3>Total visitas: {totalVisitas}</h3>
+        <h3>Total participantes: {totalParticipantes}</h3>
+    </div>
+  );
+};

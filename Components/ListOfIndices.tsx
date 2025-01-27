@@ -3,11 +3,13 @@ import { DatePicker, Button, Table, message, Pagination,Modal   } from 'antd';
 import { Indice } from '../Types/Indice';
 import type { ColumnsType } from 'antd/es/table';
 import { backendUrl } from '../Global';
+import { useNavigate } from 'react-router-dom';
+
 export const ListOfIndices: React.FC = () => {
 
     const [loading, setLoading] = useState(false);
     const [indices, setIndices] = useState<Indice[]>([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         getIndices();
       }, []);
@@ -51,10 +53,11 @@ export const ListOfIndices: React.FC = () => {
           <a
             onClick={() => {
               //confirmDelete(record.id);
+              navigate(`/statistic/${record.fecha_de_fin}/${record.fecha_de_inicio}`)
             }}
             style={{ color: 'red' }}
           >
-            Delete
+            Details
           </a>
         ),
       },
