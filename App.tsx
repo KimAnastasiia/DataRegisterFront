@@ -6,6 +6,7 @@ import MenuComponent from './Components/MenuComponent';
 import { GetVisitasComponent } from './Components/GetVisitasComponent';
 import { GetActividades } from './Components/GetActividades';
 import { CreateIndice } from './Components/CreateIndice';
+import { ListOfIndices } from './Components/ListOfIndices';
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<GetVisitasComponent/>}/>
         <Route path="/activities" element={<GetActividades/>}/>
         <Route path="/craeteIndice" element={<CreateIndice/>}/>
+        <Route path="/listOfIndices" element={<ListOfIndices/>}/>
       </Routes>
     </div>
   )

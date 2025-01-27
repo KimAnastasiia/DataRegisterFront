@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormOutlined, SearchOutlined, BuildOutlined, FileAddOutlined } from '@ant-design/icons';
+import { FormOutlined, SearchOutlined, BuildOutlined, FileAddOutlined, BookOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 const MenuComponent: React.FC = () => {
@@ -12,7 +12,7 @@ const MenuComponent: React.FC = () => {
     {
       label: (
         <a href="/">
-          Search
+          Search visitas
         </a>
       ),
       key: 'search',
@@ -21,11 +21,20 @@ const MenuComponent: React.FC = () => {
     {
       label: (
         <a href="/craete">
-          Add
+          Add visita
         </a>
       ),
       key: 'addVisitas',
       icon: <FormOutlined />,
+    },
+    {
+      label: (
+        <a href="/activities">
+          Actividades
+        </a>
+      ),
+      key: 'activities',
+      icon: <BuildOutlined />,
     },
     {
       label: (
@@ -38,12 +47,12 @@ const MenuComponent: React.FC = () => {
     },
     {
       label: (
-        <a href="/activities">
-          Actividades
+        <a href="/listOfIndices">
+          Get Indices
         </a>
       ),
-      key: 'activities',
-      icon: <BuildOutlined />,
+      key: 'listOfIndices',
+      icon: <BookOutlined />,
     },
   ];
   
