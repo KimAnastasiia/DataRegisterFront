@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormOutlined, SearchOutlined, BuildOutlined } from '@ant-design/icons';
+import { FormOutlined, SearchOutlined, BuildOutlined, FileAddOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 const MenuComponent: React.FC = () => {
@@ -24,8 +24,17 @@ const MenuComponent: React.FC = () => {
           Add
         </a>
       ),
-      key: 'app',
+      key: 'addVisitas',
       icon: <FormOutlined />,
+    },
+    {
+      label: (
+        <a href="/craeteIndice">
+          Create Indice
+        </a>
+      ),
+      key: 'addIndice',
+      icon: <FileAddOutlined />,
     },
     {
       label: (
