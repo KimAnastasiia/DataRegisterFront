@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormOutlined, SearchOutlined, BuildOutlined, FileAddOutlined, BookOutlined } from '@ant-design/icons';
+import { FormOutlined, SearchOutlined, BookOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 const MenuComponent: React.FC = () => {
@@ -10,49 +10,68 @@ const MenuComponent: React.FC = () => {
 
   const items: MenuItem[] = [
     {
-      label: (
-        <a href="/">
-          Search visitas
-        </a>
-      ),
-      key: 'search',
-      icon: <SearchOutlined />,
+      label: "Visitas",
+      key: 'visitas',
+      children: [
+        {
+          label: (
+            <a href="/">
+              Search visitas
+            </a>
+          ),
+          key: 'search',
+          icon: <SearchOutlined />,
+        },
+        {
+          label: (
+            <a href="/craete">
+              Create visita
+            </a>
+          ),
+          key: 'addVisitas',
+          icon: <FormOutlined />,
+        },
+      ],
     },
     {
-      label: (
-        <a href="/craete">
-          Add visita
-        </a>
-      ),
-      key: 'addVisitas',
-      icon: <FormOutlined />,
-    },
-    {
-      label: (
-        <a href="/activities">
-          Actividades
-        </a>
-      ),
+      label: "Actividades",
       key: 'activities',
-      icon: <BuildOutlined />,
+      children: [
+        {
+          label: (
+            <a href="/activities">
+              Search Actividades
+            </a>
+          ),
+          key: 'activities',
+          icon: <SearchOutlined />,
+        },
+
+      ],
     },
     {
-      label: (
-        <a href="/craeteIndice">
-          Create Indice
-        </a>
-      ),
-      key: 'addIndice',
-      icon: <FileAddOutlined />,
-    },
-    {
-      label: (
-        <a href="/listOfIndices">
-          Get Indices
-        </a>
-      ),
-      key: 'listOfIndices',
-      icon: <BookOutlined />,
+      label:"Indices",
+      key: 'indices',
+      children: [
+        {
+          label: (
+            <a href="/listOfIndices">
+              List of Indices
+            </a>
+          ),
+          key: 'listOfIndices',
+          icon: <BookOutlined />,
+        },
+        {
+          label: (
+            <a href="/craeteIndice">
+              Create Indice
+            </a>
+          ),
+          key: 'addIndice',
+          icon: <FormOutlined />,
+        },
+      ],
     },
   ];
   

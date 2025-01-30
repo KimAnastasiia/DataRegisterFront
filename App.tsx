@@ -19,7 +19,7 @@ function App() {
         <Route path="/activities" element={<GetActividades/>}/>
         <Route path="/craeteIndice" element={<CreateIndice/>}/>
         <Route path="/listOfIndices" element={<ListOfIndices/>}/>
-        <Route path="/statistic/:endDate/:startDate" element={<InidceDetails/>}/>
+        <Route path="/statistic/:startDate/:endDate" element={<InidceDetails/>}/>
       </Routes>
     </div>
   )

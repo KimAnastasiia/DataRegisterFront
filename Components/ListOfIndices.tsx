@@ -53,7 +53,7 @@ export const ListOfIndices: React.FC = () => {
           <a
             onClick={() => {
               //confirmDelete(record.id);
-              navigate(`/statistic/${record.fecha_de_fin}/${record.fecha_de_inicio}`)
+              navigate(`/statistic/${record.fecha_de_inicio}/${record.fecha_de_fin}`)
             }}
             style={{ color: 'red' }}
           >

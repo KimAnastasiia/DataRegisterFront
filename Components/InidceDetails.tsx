@@ -12,10 +12,13 @@ export const InidceDetails: React.FC = () => {
   const [totalVisitas, setTotalVisitas] = useState(0);
   const [totalParticipantes, setParticipantes] = useState(0);
 
+  const [totalActividades, setTotalActividades] = useState(0);
+  const [totalActividadesParticipantes, setTotalActividadesParticipantes] = useState(0);
 
 
 useEffect(() => {
     fetchVisitas();
+    fetchActividades();
     }, []);
   
   const fetchVisitas = async () => {
@@ -45,13 +48,42 @@ useEffect(() => {
 
     }
   };
+  const fetchActividades = async () => {
 
+    if (!startDate || !endDate) {
+      message.error('Por favor, seleccione ambas fechas.');
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${backendUrl}/api/actividades/indice?startDate=${startDate}&endDate=${endDate}`
+      );
+
+      if (!response.ok) {
+        throw new Error('Error al obtener actividades');
+      }
+
+      const data = await response.json();  // data will now contain { items, total }
+    setTotalActividades(data.totalActividades)
+    setTotalActividadesParticipantes(data.totalParticipantes)
+    } catch (error) {
+      message.error('Error al obtener actividades.');
+      console.error(error);
+    } finally {
+
+    }
+  };
 
   return (
     <div style={{ padding: '20px' }}>
       <h2>Statistic of Visitas </h2>
         <h3>Total visitas: {totalVisitas}</h3>
         <h3>Total participantes: {totalParticipantes}</h3>
+
+      <h2>Statistic of Actividades </h2>
+        <h3>Total actividades: {totalActividades}</h3>
+        <h3>Total participantes de actividades: {totalActividadesParticipantes}</h3>
     </div>
   );
 };
