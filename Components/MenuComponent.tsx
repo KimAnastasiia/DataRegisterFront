@@ -46,7 +46,15 @@ const MenuComponent: React.FC = () => {
           key: 'activities',
           icon: <SearchOutlined />,
         },
-
+        {
+          label: (
+            <a href="/craeteActividad">
+              Create Actividades
+            </a>
+          ),
+          key: 'createActivities',
+          icon: <FormOutlined />,
+        },
       ],
     },
     {
