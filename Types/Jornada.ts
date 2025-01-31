@@ -1,5 +1,5 @@
 export interface Jornada {
-    id?: number;
+    id?: any;
     valoracion: number;
     fecha: string;
     participantes: number;

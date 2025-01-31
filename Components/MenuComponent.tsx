@@ -63,6 +63,15 @@ const MenuComponent: React.FC = () => {
       children: [
         {
           label: (
+            <a href="/listOfJornada">
+              List of Jornada
+            </a>
+          ),
+          key: 'listOfJornada',
+          icon: <BookOutlined />,
+        },
+        {
+          label: (
             <a href="/craeteJornada">
               Create Jornada
             </a>
@@ -87,7 +96,7 @@ const MenuComponent: React.FC = () => {
         },
         {
           label: (
-            <a href="/craeteIndice">
+            <a href="/createIndice">
               Create Indice
             </a>
           ),
