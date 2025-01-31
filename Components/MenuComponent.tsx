@@ -58,6 +58,21 @@ const MenuComponent: React.FC = () => {
       ],
     },
     {
+      label:"Jornada",
+      key: 'jornada',
+      children: [
+        {
+          label: (
+            <a href="/craeteJornada">
+              Create Jornada
+            </a>
+          ),
+          key: 'addJornada',
+          icon: <FormOutlined />,
+        },
+      ],
+    },
+    {
       label:"Indices",
       key: 'indices',
       children: [

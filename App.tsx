@@ -9,6 +9,7 @@ import { CreateIndice } from './Components/CreateIndice';
 import { ListOfIndices } from './Components/ListOfIndices';
 import { InidceDetails } from './Components/InidceDetails';
 import { CreateActividades } from './Components/CreateActividades';
+import { CreateJornadasAcogida } from './Components/CreateJornadasAcogida';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
         <Route path="/craeteIndice" element={<CreateIndice/>}/>
         <Route path="/listOfIndices" element={<ListOfIndices/>}/>
         <Route path="/statistic/:startDate/:endDate" element={<InidceDetails/>}/>
+        <Route path="/craeteJornada" element={<CreateJornadasAcogida/>}/>
       </Routes>
     </div>
   )
