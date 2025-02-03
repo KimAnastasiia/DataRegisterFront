@@ -15,10 +15,12 @@ export const InidceDetails: React.FC = () => {
   const [totalActividades, setTotalActividades] = useState(0);
   const [totalActividadesParticipantes, setTotalActividadesParticipantes] = useState(0);
 
+  const [percentageParticipantes, setPercentageParticipantes] = useState(0);
 
-useEffect(() => {
+ useEffect(() => {
     fetchVisitas();
     fetchActividades();
+    fetchJornadas()
     }, []);
   
   const fetchVisitas = async () => {
@@ -43,6 +45,31 @@ useEffect(() => {
       
     } catch (error) {
       message.error('Error al obtener visitas.');
+      console.error(error);
+    } finally {
+
+    }
+  };
+  const fetchJornadas = async () => {
+
+    if (!startDate || !endDate) {
+      message.error('Por favor, seleccione ambas fechas.');
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${backendUrl}/api/jornadas/indice?startDate=${startDate}&endDate=${endDate}`
+      );
+
+      if (!response.ok) {
+        throw new Error('Error al obtener visitas');
+      }
+
+      const data = await response.json();  // data will now contain { items, total }
+      setPercentageParticipantes(data.percentageParticipantes)
+    } catch (error) {
+      message.error('Error al obtener jornadas.');
       console.error(error);
     } finally {
 
@@ -84,6 +111,9 @@ useEffect(() => {
       <h2>Statistic of Actividades </h2>
         <h3>Total actividades: {totalActividades}</h3>
         <h3>Total participantes de actividades: {totalActividadesParticipantes}</h3>
+
+      <h2>Statistic of Jornada Acogida </h2>
+        <h3>Parcentage Participantes: {percentageParticipantes}%</h3>
     </div>
   );
 };
