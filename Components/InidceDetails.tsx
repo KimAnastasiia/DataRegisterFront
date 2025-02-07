@@ -16,11 +16,12 @@ export const InidceDetails: React.FC = () => {
   const [totalActividadesParticipantes, setTotalActividadesParticipantes] = useState(0);
 
   const [percentageParticipantes, setPercentageParticipantes] = useState(0);
-
+  const [totalReuniones, setTotalReuniones] = useState(0);
  useEffect(() => {
     fetchVisitas();
     fetchActividades();
     fetchJornadas()
+    getTotalOfReuniones()
     }, []);
   
   const fetchVisitas = async () => {
@@ -45,6 +46,32 @@ export const InidceDetails: React.FC = () => {
       
     } catch (error) {
       message.error('Error al obtener visitas.');
+      console.error(error);
+    } finally {
+
+    }
+  };
+  const getTotalOfReuniones = async () => {
+
+    if (!startDate || !endDate) {
+      message.error('Por favor, seleccione ambas fechas.');
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${backendUrl}/api/reuniones-pat/total-reuniones?inicio=${startDate}&fin=${endDate}`
+      );
+
+      if (!response.ok) {
+        throw new Error('Error al obtener total of reuniones');
+      }
+
+      const data = await response.json();  // data will now contain { items, total }
+      setTotalReuniones(data.total_reuniones)
+
+    } catch (error) {
+      message.error('Error al obtener jornadas.');
       console.error(error);
     } finally {
 
@@ -114,6 +141,11 @@ export const InidceDetails: React.FC = () => {
 
       <h2>Statistic of Jornada Acogida </h2>
         <h3>Parcentage Participantes: {percentageParticipantes}%</h3>
+
+
+        <h2>Statistic of Total Reuniones PAT </h2>
+        <h3>Total Reuniones: {totalReuniones}</h3>
+        
     </div>
   );
 };
