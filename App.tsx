@@ -12,6 +12,7 @@ import { CreateActividades } from './Components/CreateActividades';
 import { CreateJornadasAcogida } from './Components/CreateJornadasAcogida';
 import { ListOfJornadasAcogida } from './Components/ListOfJornadasAcogida';
 import { ListOfPresupuestoLaboratorio } from './Components/ListOfPresupuestoLaboratorio';
+import { CreatePresupuestoLoaboratorio } from './Components/CreatePresupuestoLoaboratorio';
 function App() {
   return (
     <div className="App">
@@ -27,8 +28,7 @@ function App() {
         <Route path="/listOfIndices" element={<ListOfIndices/>}/>
         <Route path="/statistic/:startDate/:endDate" element={<InidceDetails/>}/>
         <Route path="/listOfPresupuesto" element={<ListOfPresupuestoLaboratorio/>}/>
-        
-      
+        <Route path="/craetePresupuestoLaboratorio" element={<CreatePresupuestoLoaboratorio/>}/>
       </Routes>
     </div>
   )
