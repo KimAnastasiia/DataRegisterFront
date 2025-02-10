@@ -82,6 +82,30 @@ const MenuComponent: React.FC = () => {
       ],
     },
     {
+      label:"Presupuesto Laboratorio",
+      key: 'presupuesto-laboratorio',
+      children: [
+        {
+          label: (
+            <a href="/listOfPresupuesto">
+              List of Presupuesto
+            </a>
+          ),
+          key: 'listOfPresupuesto',
+          icon: <BookOutlined />,
+        },
+        {
+          label: (
+            <a href="/craetePresupuestoLaboratorio">
+              Create Presupuesto Laboratorio
+            </a>
+          ),
+          key: 'addJornada',
+          icon: <FormOutlined />,
+        },
+      ],
+    },
+    {
       label:"Indices",
       key: 'indices',
       children: [
