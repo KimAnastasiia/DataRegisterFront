@@ -13,6 +13,7 @@ import { CreateJornadasAcogida } from './Components/CreateJornadasAcogida';
 import { ListOfJornadasAcogida } from './Components/ListOfJornadasAcogida';
 import { ListOfPresupuestoLaboratorio } from './Components/ListOfPresupuestoLaboratorio';
 import { CreatePresupuestoLoaboratorio } from './Components/CreatePresupuestoLoaboratorio';
+import { EditPresupuestoLaboratorio } from './Components/EditPresupuestoLaboratorio';
 function App() {
   return (
     <div className="App">
@@ -29,6 +30,7 @@ function App() {
         <Route path="/statistic/:startDate/:endDate" element={<InidceDetails/>}/>
         <Route path="/listOfPresupuesto" element={<ListOfPresupuestoLaboratorio/>}/>
         <Route path="/craetePresupuestoLaboratorio" element={<CreatePresupuestoLoaboratorio/>}/>
+        <Route path="/presupuestoLaboratorio/:id" element={<EditPresupuestoLaboratorio/>}/>
       </Routes>
     </div>
   )

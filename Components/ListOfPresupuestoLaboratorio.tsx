@@ -96,6 +96,21 @@ export const ListOfPresupuestoLaboratorio: React.FC = () => {
           </a>
         ),
       },
+      {
+        title: '',
+        dataIndex: '',
+        key: 'x',
+        render: (_, record) => (
+          <a
+            onClick={() => {
+              navigate('/presupuestoLaboratorio/'+record.id);
+            }}
+            style={{ color: 'green' }}
+          >
+            Edit
+          </a>
+        ),
+      },
   ];
     return (
         <div style={{ padding: '20px' }}>
