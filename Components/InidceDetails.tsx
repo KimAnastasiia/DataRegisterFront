@@ -17,7 +17,10 @@ export const InidceDetails: React.FC = () => {
 
   const [percentageParticipantes, setPercentageParticipantes] = useState(0);
   const [totalReuniones, setTotalReuniones] = useState(0);
+
+  const [presupuesto, setPresupuesto] = useState(0);
  useEffect(() => {
+  fetchPresupuesto()
     fetchVisitas();
     fetchActividades();
     fetchJornadas()
@@ -128,7 +131,31 @@ export const InidceDetails: React.FC = () => {
 
     }
   };
+  const fetchPresupuesto = async () => {
 
+    if (!startDate || !endDate) {
+      message.error('Por favor, seleccione ambas fechas.');
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${backendUrl}/api/presupuesto-laboratorio/porcentaje-gasto?fechaInicio=${startDate}&fechaFin=${endDate}`
+      );
+
+      if (!response.ok) {
+        throw new Error('Error al obtener actividades');
+      }
+
+      const data = await response.json();  // data will now contain { items, total }
+      setPresupuesto(data)
+    } catch (error) {
+      message.error('Error al obtener actividades.');
+      console.error(error);
+    } finally {
+
+    }
+  };
   return (
     <div style={{ padding: '20px' }}>
       <h2>Statistic of Visitas </h2>
@@ -143,9 +170,11 @@ export const InidceDetails: React.FC = () => {
         <h3>Parcentage Participantes: {percentageParticipantes}%</h3>
 
 
-        <h2>Statistic of Total Reuniones PAT </h2>
+      <h2>Statistic of Total Reuniones PAT </h2>
         <h3>Total Reuniones: {totalReuniones}</h3>
-        
+      
+      <h2>Se gasto en el presupuesto de laboratorios</h2>
+        <h3>{presupuesto}%</h3>  
     </div>
   );
 };
