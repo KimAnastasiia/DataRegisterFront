@@ -104,14 +104,15 @@ export const ListOfOrientacionesCurriculares: React.FC = () => {
       {
         title: '',
         dataIndex: '',
-        key: 'x',
         render: (_, record) => (
           <a
+            onClick={() => {
+              navigate('/orientacion/'+record.id);
+            }}
             style={{ color: 'green' }}
           >
             Edit
-          </a>
-        ),
+          </a>)
       },
   ];
     return (
