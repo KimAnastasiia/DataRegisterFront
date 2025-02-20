@@ -106,6 +106,30 @@ const MenuComponent: React.FC = () => {
       ],
     },
     {
+      label:"Orientaciones Curriculares",
+      key: 'orientaciones-curriculares',
+      children: [
+        {
+          label: (
+            <a href="/listOfOrientacionesCurriculares">
+              List of Orientaciones Curriculares
+            </a>
+          ),
+          key: 'listOfOrientacionesCurriculares',
+          icon: <BookOutlined />,
+        },
+        {
+          label: (
+            <a href="/craeteOrientacionesCurriculares">
+              Create Orientaciones Curriculares
+            </a>
+          ),
+          key: 'addOrientacionesCurriculares',
+          icon: <FormOutlined />,
+        },
+      ],
+    },
+    {
       label:"Indices",
       key: 'indices',
       children: [

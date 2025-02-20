@@ -14,6 +14,7 @@ import { ListOfJornadasAcogida } from './Components/ListOfJornadasAcogida';
 import { ListOfPresupuestoLaboratorio } from './Components/ListOfPresupuestoLaboratorio';
 import { CreatePresupuestoLoaboratorio } from './Components/CreatePresupuestoLoaboratorio';
 import { EditPresupuestoLaboratorio } from './Components/EditPresupuestoLaboratorio';
+import { ListOfOrientacionesCurriculares } from './Components/ListOfOrientacionesCurriculares';
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,8 @@ function App() {
         <Route path="/listOfPresupuesto" element={<ListOfPresupuestoLaboratorio/>}/>
         <Route path="/craetePresupuestoLaboratorio" element={<CreatePresupuestoLoaboratorio/>}/>
         <Route path="/presupuestoLaboratorio/:id" element={<EditPresupuestoLaboratorio/>}/>
+        <Route path="/listOfOrientacionesCurriculares" element={<ListOfOrientacionesCurriculares/>}/>
+        
       </Routes>
     </div>
   )
