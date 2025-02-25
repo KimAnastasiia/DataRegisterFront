@@ -130,6 +130,30 @@ const MenuComponent: React.FC = () => {
       ],
     },
     {
+      label:"Innovaciones Docentes",
+      key: 'innovacion_docente',
+      children: [
+        {
+          label: (
+            <a href="/innovacionesDocentes">
+              List of Innovaciones Docentes
+            </a>
+          ),
+          key: 'listOfInnovacionesDocentes',
+          icon: <BookOutlined />,
+        },
+        {
+          label: (
+            <a href="/craeteInnovacionDocente">
+              Create Innovacion Docente
+            </a>
+          ),
+          key: 'addInnovacionDocente',
+          icon: <FormOutlined />,
+        },
+      ],
+    },
+    {
       label:"Indices",
       key: 'indices',
       children: [
