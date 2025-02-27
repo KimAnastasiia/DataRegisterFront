@@ -5,7 +5,7 @@ import { backendUrl } from '../Global';
 import { useNavigate } from 'react-router-dom';
 import { InnovacionDocente } from '../Types/InnovacionDocente';
 
-export const ListOfInnovacionDocente: React.FC = () => {
+export const ListOfInnovacionesDocentes: React.FC = () => {
 
     const { confirm } = Modal;
     const [loading, setLoading] = useState(false);
