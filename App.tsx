@@ -19,6 +19,7 @@ import { EditOrientacionCurricular } from './Components/EditOrientacionCurricula
 import { CreateOrientacionCurricular } from './Components/CreateOrientacionCurricular';
 import { ListOfInnovacionesDocentes } from './Components/ListOfInnovacionesDocentes';
 import { EditInnovacionDocente } from './Components/EditInnovacionDocente';
+import { CreateInnovacionDocente } from './Components/CreateInnovacionDocente';
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
         <Route path="/craeteOrientacionesCurriculares" element={<CreateOrientacionCurricular/>}/>
         <Route path="/innovacionesDocentes" element={<ListOfInnovacionesDocentes/>}/>   
         <Route path="/innovacion-docente/:id" element={<EditInnovacionDocente/>}/> 
+        <Route path="/craeteInnovacionDocente" element={<CreateInnovacionDocente/>}/> 
+        
       </Routes>
     </div>
   )
