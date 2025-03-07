@@ -19,12 +19,15 @@ export const InidceDetails: React.FC = () => {
   const [totalReuniones, setTotalReuniones] = useState(0);
 
   const [presupuesto, setPresupuesto] = useState(0);
+  const [innovacionDocente, setInnovacionDocente] = useState(0);
+  
  useEffect(() => {
   fetchPresupuesto()
     fetchVisitas();
     fetchActividades();
     fetchJornadas()
     getTotalOfReuniones()
+    fetchInnovacionDocente()
     }, []);
   
   const fetchVisitas = async () => {
@@ -46,6 +49,34 @@ export const InidceDetails: React.FC = () => {
       const data = await response.json();  // data will now contain { items, total }
       setTotalVisitas(data.totalVisitas)
       setParticipantes(data.totalParticipantes)
+      
+    } catch (error) {
+      message.error('Error al obtener visitas.');
+      console.error(error);
+    } finally {
+
+    }
+  };
+  const fetchInnovacionDocente = async () => {
+
+    if (!startDate || !endDate) {
+      message.error('Por favor, seleccione ambas fechas.');
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${backendUrl}/api/innovacion-docente/media/average?startDate=${startDate}&endDate=${endDate}`
+      );
+
+      if (!response.ok) {
+        throw new Error('Error al obtener innovacion docente');
+      }
+
+      const data = await response.json();  
+
+      setInnovacionDocente(data.mediaDePorcentajesParticipantes)
+   
       
     } catch (error) {
       message.error('Error al obtener visitas.');
@@ -175,6 +206,9 @@ export const InidceDetails: React.FC = () => {
       
       <h2>Se gasto en el presupuesto de laboratorios</h2>
         <h3>{presupuesto}%</h3>  
+
+        <h2> Innovación docente</h2>
+        <h3> media de porcentajes participantes {innovacionDocente || 0} %</h3>  
     </div>
   );
 };
